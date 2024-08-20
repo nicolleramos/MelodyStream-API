@@ -3,12 +3,12 @@ POST http://localhost:3333/songs
 Content-Type: application/json
 
 {
-    "title": "Freak On a Leash",
-    "artist_ID": "Korn",
-    "album_ID": "Follow The Leader",
-    "genre": "rock",
-    "duration": 415,
-    "url": "https://open.spotify.com/track/6W21LNLz9Sw7sUSNWMSHRu?si=c141c46e52ae46dc"
+    "title": "",
+    "artist_ID": "",
+    "album_ID": "",
+    "genre": "",
+    "duration": ,
+    "url": ""
 }
 
 ###
