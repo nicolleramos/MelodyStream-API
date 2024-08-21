@@ -3,12 +3,12 @@ POST http://localhost:3333/songs
 Content-Type: application/json
 
 {
-    "title": "",
-    "artist_ID": "",
-    "album_ID": "",
-    "genre": "",
-    "duration": ,
-    "url": ""
+    "title": "ATE THAT",
+    "artist_id": "YOUNG POSSE",
+    "album_id": "ATE THAT EP",
+    "genre": "hiphop",
+    "duration": 3,
+    "url": "https://open.spotify.com/track/6spCL6M22BQACNDd70Gov3?si=824b8f8c0e1e4b34"
 }
 
 ###
@@ -19,7 +19,7 @@ PUT http://localhost:3333/songs/
 Content-Type: application/json
 
 ###
-DELETE http://localhost:3333/songs/
+DELETE http://localhost:3333/songs/899e5605-c324-4008-9be4-e87e680c9ec3
 
 // Query Parameters
 ###

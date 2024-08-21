@@ -1,15 +1,17 @@
 import { fastify } from 'fastify';
-import { DataBaseMemory } from './database-memory.js';
+// import { DataBaseMemory } from './database-memory.js';
+import { DataBasePostgres } from './database-postgres.js';
 
 const server = fastify();
-const db = new DataBaseMemory();
+// const db = new DataBaseMemory();
+const db = new DataBasePostgres();
 
-server.post('/songs', (request, reply) => {
-    const {title, artist_ID, album_ID, genre, duration, url } = request.body;
-    db.create({
+server.post('/songs', async (request, reply) => {
+    const {title, artist_id, album_id, genre, duration, url } = request.body;
+    await db.create({
         title: title,
-        artist_ID: artist_ID,
-        album_ID: album_ID,
+        artist_id: artist_id,
+        album_id: album_id,
         genre: genre,
         duration: duration,
         url: url
@@ -17,21 +19,21 @@ server.post('/songs', (request, reply) => {
     return reply.status(201).send();
 });
 
-server.get('/songs', (request) => {
+server.get('/songs', async (request) => {
     const search = request.query.search;
     console.log(search);
 
-    const songs = db.list(search);
+    const songs = await db.list(search);
     return songs;
 });
 
-server.put('/songs/:id', (request, reply) => {
+server.put('/songs/:id', async (request, reply) => {
     const songId = request.params.id;
-    const {title, artist_ID, album_ID, genre, duration, url } = request.body;
-    db.update(songId, {
+    const {title, artist_id, album_id, genre, duration, url } = request.body;
+    await db.update(songId, {
         title,
-        artist_ID, 
-        album_ID,
+        artist_id, 
+        album_id,
         genre, 
         duration, 
         url,
@@ -39,12 +41,12 @@ server.put('/songs/:id', (request, reply) => {
     return reply.status(204).send();
 });
 
-server.delete('/songs/:id', (request, reply) => {
+server.delete('/songs/:id', async (request, reply) => {
     const songId = request.params.id;
-    db.delete(songId);
+    await db.delete(songId);
     return reply.status(204).send();
 });
 
 server.listen({
-    port: 3333,
+    port: process.env.port ?? 3333,
 });
